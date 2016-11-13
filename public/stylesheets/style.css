@@ -9,3 +9,14 @@ body {
 a {
   color: #00B7FF;
 }
+
+.row.course-list .course h3{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 262px;
+}
+
+.course-thumbnail {
+  vertical-align: middle;
+}

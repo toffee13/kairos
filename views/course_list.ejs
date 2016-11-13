@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<% include partials/head %>
+
+<body>
+<% include partials/nav%>
+
+<!-- Page Content -->
+<div class="container">
+
+    <% include partials/head_title.ejs%>
+
+    <!-- Projects Row -->
+    <div class="row course-list">
+        <% courseList.forEach(function(course){ %>
+        <div class="col-md-3 portfolio-item">
+            <a class="course" href="<%= course.uri.replace("videos", "course")%>">
+                <h3 class="course-title"><%= course.name%></h3>
+                <img class="img-responsive" src="<%=course.pictures.sizes[3].link%>" alt="">
+            </a>
+        </div>
+        <% }); %>
+    </div>
+    <!-- /.row -->
+
+    <!-- Pagination <%- JSON.stringify(pagination)%> -->
+    <% if (pagination) {%>
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <ul class="pagination">
+                <% if (pagination.previous) {%>
+                <li>
+                    <a href="?page=<%= pagination.previous%>">&laquo;</a>
+                </li>
+                <% } %>
+                <% for (var i in pagination.range){ %>
+                <li class="<%= (pagination.current == pagination.range[i]) ? 'active' : '' %>">
+                    <a href="?page=<%= pagination.range[i]%>"><%= pagination.range[i]%></a>
+                </li>
+                <% } %>
+                <% if (pagination.next) {%>
+                <li>
+                    <a href="?page=<%= pagination.next%>">&raquo;</a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <% }%>
+    <!-- /.row -->
+
+    <% include partials/footer%>
+
+</div>
+<!-- /.container -->
+
+<% include partials/clientlibs_js%>
+
+</body>
+
+</html>

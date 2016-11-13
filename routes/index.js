@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
   console.log("this is log");
 
-  res.render('index', { title: 'Express', env: process.env.USER_NAME });
+  res.render('index', { title: 'Express'});
 });
 
 module.exports = router;
