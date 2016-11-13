@@ -1,0 +1,23 @@
+<% if (pagination) { %>
+<div class="row text-center">
+    <div class="col-lg-12">
+        <ul class="pagination">
+            <% if (pagination.previous) {%>
+            <li>
+                <a href="?page=<%= pagination.previous%>">&laquo;</a>
+            </li>
+            <% } %>
+            <% for (var i in pagination.range){ %>
+            <li class="<%= (pagination.current == pagination.range[i]) ? 'active' : '' %>">
+                <a href="?page=<%= pagination.range[i]%>"><%= pagination.range[i]%></a>
+            </li>
+            <% } %>
+            <% if (pagination.next) {%>
+            <li>
+                <a href="?page=<%= pagination.next%>">&raquo;</a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+<% } %>
