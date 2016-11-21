@@ -34,7 +34,7 @@ function fetchVideos(){
     });
 
     req.on('error', (e) => {
-        console.error(`problem with request: ${e.message}`);
+        console.error(`VIMEO Request ERROR : ${e.message}`);
     });
 
     req.end();

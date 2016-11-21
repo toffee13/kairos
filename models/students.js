@@ -1,2 +1,1 @@
-
-exports.getStudent
+var _ = require('underscore');
