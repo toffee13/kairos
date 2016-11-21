@@ -4,10 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var course = require('./routes/course');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -28,6 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/course', course);
+app.use('/admin', admin);
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,6 +68,16 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+app.all('/admin', function(req, res, next) {
+  if (!isLogin){
+    res.redirect(301, '/admin/login');
+  } else {
+    next();
+  }
+
+});
+
 
 
 module.exports = app;
