@@ -5,10 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session')
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var course = require('./routes/course');
+var notice = require('./routes/notice');
 var admin = require('./routes/admin');
 
 var app = express();
@@ -37,6 +37,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use('/notice', notice);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
